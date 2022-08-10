@@ -6,7 +6,7 @@ pipeline{
     stages{
        stage('GetCode'){
             steps{
-                git clone 'https://github.com/RanjanGitHubb/demo.git'
+                git 'https://github.com/RanjanGitHubb/demo.git'
             }
          }        
        stage('Build'){
