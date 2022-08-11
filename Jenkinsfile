@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         
-        maven "Maven3"
+        maven "MAVEN_HOME/bin"
     }
 
     stages {
