@@ -11,8 +11,9 @@ pipeline {
             steps {
                 
                // git 'https://github.com/RanjanGitHubb/demo.git'
+		    
 				
-                bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                bat "cd initial && mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
             post {
