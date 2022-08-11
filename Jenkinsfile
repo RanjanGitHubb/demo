@@ -1,29 +1,27 @@
-pipeline{
+pipeline {
     agent any
-    environment {
-        PATH = "$PATH:/opt/apache-maven-3.8.6/bin"
+
+    tools {
+        
+        maven "Maven3"
     }
-    stages{
-       stage('GetCode'){
-            steps{
+
+    stages {
+        stage('Build') {
+            steps {
+                
                 git 'https://github.com/RanjanGitHubb/demo.git'
+				
+                bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
-         }        
-       stage('Build'){
-            steps{
-                sh 'mvn clean install'
+
+            post {
+			
+			   success {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
             }
-         }
-        stage('SonarQube analysis') {
-//    def scannerHome = tool 'SonarScanner 4.0';
-        steps{
-        withSonarQubeEnv('sonarqube-9.5') { 
-        // If you have configured more than one global server connection, you can specify its name
-//      sh "${scannerHome}/bin/sonar-scanner"
-        sh "mvn sonar:sonar"
-    }
         }
-        }
-       
     }
 }
