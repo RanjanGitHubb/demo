@@ -3,10 +3,10 @@ node {
   git "https://github.com/RanjanGitHubb/demo.git"
   }
   stage('Build') {
-    bat "mvn clean install"
+    bat "cd initial && mvn clean install"
   }
   stage('SonarCloud Analysis') {
-    withSonarQubeEnv('SonarCloud')
+    withSonarQubeEnv('SonarQube')
     bat "mvn sonar:sonar"
     
   }
