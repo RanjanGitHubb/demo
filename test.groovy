@@ -6,8 +6,8 @@ node {
     bat "cd initial && mvn clean install"
   }
   stage('SonarCloud Analysis') {
-    withSonarQubeEnv('SonarQube')
-    bat "mvn sonar:sonar"
+   // withSonarQubeEnv('SonarQube')
+    bat "mvn verify sonar:sonar"
     
   }
 
