@@ -7,7 +7,7 @@ node {
   }
   stage('SonarCloud Analysis') {
    // withSonarQubeEnv('SonarQube')
-    bat "mvn verify sonar:sonar"
+    bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RanjanGitHubb_demo"
     
   }
 
